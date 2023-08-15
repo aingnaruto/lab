@@ -1,0 +1,13 @@
+- hosts: master
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: Label Worker0 as Worker
+      become: yes
+      become_user: kubernet 
+      command: kubectl label nodes worker0 node-role.kubernetes.io/worker=worker
+
+    - name: Label Worker1 as Worker
+      become: yes
+      become_user: kubernet
+      command: kubectl label nodes worker1 node-role.kubernetes.io/worker=worker
